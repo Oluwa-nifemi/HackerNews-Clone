@@ -4,6 +4,11 @@
 }
 
 @font-face{
+    src: url('./assets/fonts/OpenSans-Semibold-webfont.woff');
+    font-family: 'OpenSans Semibold'
+}
+
+@font-face{
     src: url('./assets/fonts/OpenSans-Bold-webfont.woff');
     font-family: 'OpenSans Bold'
 }

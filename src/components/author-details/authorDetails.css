@@ -1,0 +1,20 @@
+.author__name{
+    font-size: 30px;
+    font-family: 'OpenSans Bold',sans-serif;
+    margin: 0 0 10px;
+}
+
+.author__details{
+    font-size: 16px;
+    font-family: 'OpenSans Regular', sans-serif;
+    color: grey;
+    margin: 0;
+}
+
+.author__details .bold{
+    color: rgb(114, 114, 114);
+}
+
+.bold{
+    font-family: 'OpenSans Semibold', sans-serif;
+}
