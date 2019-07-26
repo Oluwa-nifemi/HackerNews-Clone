@@ -1,0 +1,23 @@
+.comment{
+    padding: 20px 15px;
+    border-radius: 5px;
+    background-color: rgb(235, 235, 235);
+}
+
+.comment__details{
+    font-size: 16px;
+    font-family: 'OpenSans Regular', sans-serif;
+    color: rgb(143, 143, 143);
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.comment__details .underline{
+    color: black;
+}
+
+.comment__text{
+    font-size: 16px;
+    font-family: 'OpenSans Regular', sans-serif;
+    margin-bottom: 0px;
+}
