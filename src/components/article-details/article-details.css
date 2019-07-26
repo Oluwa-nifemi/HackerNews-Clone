@@ -1,0 +1,20 @@
+.article__name{
+    font-family: 'OpenSans Bold',sans-serif;
+    color: rgb(200, 5, 5);
+    margin: 0 0 3px;
+}
+
+.article__name.large{
+    font-size: 30px;
+}
+
+.article__details{
+    font-family: 'OpenSans Regular',sans-serif;
+    color: grey;
+    margin: 0;
+}
+
+.article__details .underline{
+    color: black;
+    /* text-decoration: underline */
+}
