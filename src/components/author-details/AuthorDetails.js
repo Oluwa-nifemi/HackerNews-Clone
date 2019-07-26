@@ -1,5 +1,5 @@
 import React from 'react'
-import './authorDetails.css'
+import './author-details.css'
 import PropTypes from 'prop-types'
 
 export default function AuthorDetails({ author,date,karma }){
