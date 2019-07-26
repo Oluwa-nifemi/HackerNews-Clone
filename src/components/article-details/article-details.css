@@ -5,7 +5,7 @@
 }
 
 .article__name.large{
-    font-size: 30px;
+    font-size: 34px;
 }
 
 .article__details{
@@ -16,5 +16,4 @@
 
 .article__details .underline{
     color: black;
-    /* text-decoration: underline */
 }
