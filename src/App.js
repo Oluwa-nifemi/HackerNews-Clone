@@ -7,7 +7,7 @@ import Comments from './components/comments/Comments'
 function App() {
   return (
     <div className="App">
-      <Author />
+      <Comments id={20538614} />
     </div>
   );
 }

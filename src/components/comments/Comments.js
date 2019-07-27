@@ -2,28 +2,37 @@ import React from 'react'
 import Nav from '../nav/Nav'
 import Comment from '../comment/Comment'
 import ArticleDetails from '../article-details/ArticleDetails'
+import { getArticle } from '../../api/api'
 
 export default class Comments extends React.Component{
+    state = {
+        article: null,
+        comments: []
+    }
+
+    componentDidMount(){
+        getArticle(this.props.id)
+        .then(res => this.setState(res))
+    }
+
     render(){
+        if(this.state.article){
+            var { title, by:author, time:date, kids:comments } = this.state.article            
+        }
+
         return (
             <React.Fragment>
                 <Nav/>
-                <ArticleDetails title="The art of dancing" author="sohkyamung" date="9/9/2014, 4:37 AM" comments={4} large={true} />
-                <Comment 
-                    author="sohkyamung"
-                    date="9/9/2014, 4:37 AM"
-                    comment="This is really good. I really needed this. Thank you"
-                />
-                <Comment 
-                    author="sohkyamung"
-                    date="9/9/2014, 4:37 AM"
-                    comment="This is really good. I really needed this. Thank you"
-                />
-                <Comment 
-                    author="sohkyamung"
-                    date="9/9/2014, 4:37 AM"
-                    comment="This is really good. I really needed this. Thank you"
-                />
+                <ArticleDetails title={title} author={author} date={date} comments={comments} large={true} />
+                {
+                    this.state.comments.map(({ by:author, time:date, text:comment }) => (
+                        <Comment 
+                            author={author}
+                            date={date}
+                            comment={comment}
+                        />
+                    ))
+                }
             </React.Fragment>
         )
     }

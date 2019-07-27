@@ -8,8 +8,9 @@ export default function Comment({ author, comment, date  }){
             <p className="comment__details">
                 by <a href="#" className="underline">{ author }</a> on { date }
             </p>
-            <p className="comment__text">
-                { comment }
+            <p className="comment__text" dangerouslySetInnerHTML={{
+                __html: comment
+            }}>
             </p>
         </div>
     )
