@@ -19,6 +19,6 @@ const processDate = (date) => `${date.toLocaleDateString()}, ${date.toLocaleTime
 
 AuthorDetails.propTypes = {
     author: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    date: PropTypes.number.isRequired,
     karma: PropTypes.number.isRequired
 }
