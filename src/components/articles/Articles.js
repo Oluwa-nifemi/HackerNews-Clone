@@ -12,14 +12,14 @@ export default class Articles extends React.Component{
     }
 
     componentWillMount(){
-        const mode = this.props.match.params.mode || 'top'
+        const mode = this.props.match.params.mode
         getArticles(mode)
         .then(articles => this.setState({articles}))
     }
 
     componentWillReceiveProps(nextProps){
-        const mode = this.props.match.params.mode || 'top'
-        const nextMode = nextProps.match.params.mode || 'top'
+        const mode = this.props.match.params.mode
+        const nextMode = nextProps.match.params.mode
         if(mode !== nextMode){
             this.setState({articles: []})
             getArticles(nextMode)
