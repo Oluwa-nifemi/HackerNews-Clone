@@ -26,9 +26,9 @@ export default function Nav(){
                     New
                 </NavLink>
             </div>
-            <button className="nav__theme-btn">
+            {/* <button className="nav__theme-btn">
                 <span role="img" aria-label="emoji">🔦</span>
-            </button>
+            </button> */}
         </nav>
     )
 }
