@@ -1,13 +1,14 @@
 import React from 'react'
 import './author-details.css'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 export default function AuthorDetails({ author,date,karma }){
     return (
         <div className="author">
-            <p className="author__name">
+            <Link className="author__name" to={`/author/${author}`}>
                 {author}
-            </p>
+            </Link>
             <p className="author__details">
                 joined <span className="bold">{processDate(new Date(date))}</span> and has <span className="bold">{karma}</span> karma
             </p>

@@ -15,12 +15,8 @@ export default class Author extends React.Component{
         articles: []
     }
 
-    static defaultProps = {
-        author: "rchaudhary"
-    }
-    
     componentDidMount(){
-        getUserDetails(this.props.author)
+        getUserDetails(this.props.match.params.id)
         .then(({ id, created, karma, articles}) => {
             this.setState({
                 author: id,
@@ -41,8 +37,15 @@ export default class Author extends React.Component{
                         Posts
                     </p>
                     {this.state.articles.map(({ title, by, time, kids, id, url }) => {
-                        return <ArticleDetails title={title} author={by} date={time} comments={kids} key={id} url={url}/>
+                        return <ArticleDetails title={title} author={by} date={time} comments={kids} id={id} key={id} url={url}/>
                     })}
+                    {/* <AuthorDetails author={this.state.author} date={this.state.date} karma={this.state.karma}/>
+                    <p className="header">
+                        Posts
+                    </p>
+                    {this.state.articles.map(({ title, by, time, kids, id, url }) => {
+                        return <ArticleDetails title={title} author={by} date={time} comments={kids} id={id} key={id} url={url}/>
+                    })} */}
                 </React.Fragment>
             )
         }else{

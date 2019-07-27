@@ -11,28 +11,25 @@ export default class Comments extends React.Component{
         comments: []
     }
 
-    static defaultProps = {
-        id: 20538614
-    }
-
     componentDidMount(){
-        getArticle(this.props.id)
+        getArticle(this.props.match.params.id)
         .then(res => this.setState(res))
     }
 
     render(){
         if(this.state.article){
-            var { title, by:author, time:date, kids:comments } = this.state.article            
+            const { title, by:author, time:date, kids:comments, url,id } = this.state.article            
             return (
                 <React.Fragment>
                     <Nav/>
-                    <ArticleDetails title={title} author={author} date={date} comments={comments} large={true} />
+                    <ArticleDetails title={title} author={author} date={date} comments={comments} large={true} url={url} id={id} />
                     {
-                        this.state.comments.map(({ by:author, time:date, text:comment }) => (
+                        this.state.comments.map(({ by:author, time:date, text:comment,id }) => (
                             <Comment 
                                 author={author}
                                 date={date}
                                 comment={comment}
+                                key={id}
                             />
                         ))
                     }

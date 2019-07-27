@@ -24,7 +24,8 @@ export async function getUserDetails(user){
 
 export async function getArticle(id){
     const article = await processItem(id)
-    const comments = await Promise.all(article.kids.map(processItem))
+    let comments = await Promise.all(article.kids.map(processItem))
+    comments = comments.filter(({ deleted }) => !deleted)
     return({article,comments})
 }
 
