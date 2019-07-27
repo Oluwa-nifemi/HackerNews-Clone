@@ -9,11 +9,13 @@ export default function AuthorDetails({ author,date,karma }){
                 {author}
             </p>
             <p className="author__details">
-                joined <span className="bold">{date}</span> and has <span className="bold">{karma}</span> karma
+                joined <span className="bold">{processDate(new Date(date))}</span> and has <span className="bold">{karma}</span> karma
             </p>
         </div>
     )
 }
+
+const processDate = (date) => `${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`
 
 AuthorDetails.propTypes = {
     author: PropTypes.string.isRequired,

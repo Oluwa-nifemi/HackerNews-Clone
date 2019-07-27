@@ -3,22 +3,44 @@ import Nav from '../nav/Nav'
 import AuthorDetails from '../author-details/AuthorDetails'
 import ArticleDetails from '../article-details/ArticleDetails'
 import './author.css'
+import { getUserDetails } from '../../api/api';
 
 export default class Author extends React.Component{
+    
+    state = {
+        author: null,
+        date: null,
+        karma: null,
+        articles: []
+    }
+
+    static defaultProps = {
+        author: "rchaudhary"
+    }
+    
+    componentDidMount(){
+        getUserDetails(this.props.author)
+        .then(({ id, created, karma, articles}) => {
+            this.setState({
+                author: id,
+                date: created,
+                karma,
+                articles
+            })
+        })
+    }
+    
     render(){
         return (
             <React.Fragment>
                 <Nav />
-                <AuthorDetails author="sohkyamung" date="9/9/2014, 4:37 AM" karma={23485}/>
+                <AuthorDetails author={this.state.author} date={this.state.date} karma={this.state.karma}/>
                 <p className="header">
                     Posts
                 </p>
-                <ArticleDetails title="The art of dancing" author="sohkyamung" date="9/9/2014, 4:37 AM" comments={4}/>
-                <ArticleDetails title="The art of dancing" author="sohkyamung" date="9/9/2014, 4:37 AM" comments={4}/>
-                <ArticleDetails title="The art of dancing" author="sohkyamung" date="9/9/2014, 4:37 AM" comments={4}/>
-                <ArticleDetails title="The art of dancing" author="sohkyamung" date="9/9/2014, 4:37 AM" comments={4}/>
-                <ArticleDetails title="The art of dancing" author="sohkyamung" date="9/9/2014, 4:37 AM" comments={4}/>
-                <ArticleDetails title="The art of dancing" author="sohkyamung" date="9/9/2014, 4:37 AM" comments={4}/>
+                {this.state.articles.map(({ title, by, time, kids, id, url }) => {
+                    return <ArticleDetails title={title} author={by} date={time} comments={kids} key={id} url={url}/>
+                })}
             </React.Fragment>
 
         )
