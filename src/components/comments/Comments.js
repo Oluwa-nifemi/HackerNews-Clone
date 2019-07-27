@@ -8,7 +8,8 @@ import Loading from '../Loading'
 export default class Comments extends React.Component{
     state = {
         article: null,
-        comments: []
+        comments: [],
+        error: null
     }
 
     componentDidMount(){
@@ -17,8 +18,10 @@ export default class Comments extends React.Component{
     }
 
     render(){
-        if(this.state.article){
-            const { title, by:author, time:date, kids:comments, url,id } = this.state.article            
+        const { article, error } = this.state
+
+        if(article){
+            const { title, by:author, time:date, kids:comments, url,id } = article            
             return (
                 <React.Fragment>
                     <Nav/>
@@ -35,11 +38,18 @@ export default class Comments extends React.Component{
                     }
                 </React.Fragment>
             )    
-        }else{
+        }else if(!error){
             return (
                 <React.Fragment>
                     <Nav/>
                     <Loading />
+                </React.Fragment>                    
+            )
+        }else{
+            return (
+                <React.Fragment>
+                    <Nav/>
+                    <h1>{error}</h1>
                 </React.Fragment>                    
             )
         }

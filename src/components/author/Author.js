@@ -12,47 +12,50 @@ export default class Author extends React.Component{
         author: null,
         date: null,
         karma: null,
-        articles: []
+        articles: [],
+        error: null
     }
 
     componentDidMount(){
         getUserDetails(this.props.match.params.id)
-        .then(({ id, created, karma, articles}) => {
+        .then(({ id, created, karma, articles, error}) => {
             this.setState({
                 author: id,
                 date: created,
                 karma,
-                articles
+                articles,
+                error
             })
         })
     }
     
     render(){
-        if(this.state.author){
+        const { author, date, karma, articles, error } = this.state
+        if(author){
             return (
                 <React.Fragment>
                     <Nav />
-                    <AuthorDetails author={this.state.author} date={this.state.date} karma={this.state.karma}/>
+                    <AuthorDetails author={author} date={date} karma={karma}/>
                     <p className="header">
                         Posts
                     </p>
-                    {this.state.articles.map(({ title, by, time, kids, id, url }) => {
+                    {articles.map(({ title, by, time, kids, id, url }) => {
                         return <ArticleDetails title={title} author={by} date={time} comments={kids} id={id} key={id} url={url}/>
                     })}
-                    {/* <AuthorDetails author={this.state.author} date={this.state.date} karma={this.state.karma}/>
-                    <p className="header">
-                        Posts
-                    </p>
-                    {this.state.articles.map(({ title, by, time, kids, id, url }) => {
-                        return <ArticleDetails title={title} author={by} date={time} comments={kids} id={id} key={id} url={url}/>
-                    })} */}
+                </React.Fragment>
+            )
+        }else if(!error){
+            return (
+                <React.Fragment>
+                    <Nav/>
+                    <Loading/>
                 </React.Fragment>
             )
         }else{
             return (
                 <React.Fragment>
                     <Nav/>
-                    <Loading/>
+                    <h1>This user does not exist</h1>
                 </React.Fragment>
             )
         }
